@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ShopEasy</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>ShopEasy</h1>
+    <div id="user-info" class="hidden">
+      <span id="welcome-msg"></span>
+      <button id="logout-btn">Log Out</button>
+    </div>
+  </header>
+
+  <!-- Login / Register -->
+  <section id="auth-section">
+    <div class="auth-box">
+      <div class="auth-tabs">
+        <button id="show-login" class="active">Log In</button>
+        <button id="show-register">Sign Up</button>
+      </div>
+
+      <form id="login-form">
+        <input type="email" id="login-email" placeholder="Email" required />
+        <input type="password" id="login-password" placeholder="Password" required />
+        <button type="submit">Log In</button>
+        <p class="error" id="login-error"></p>
+      </form>
+
+      <form id="register-form" class="hidden">
+        <input type="text" id="register-name" placeholder="Full Name" required />
+        <input type="email" id="register-email" placeholder="Email" required />
+        <input type="password" id="register-password" placeholder="Password (min 6 chars)" required />
+        <label class="checkbox-label">
+          <input type="checkbox" id="register-admin" /> Register as Admin (for testing product management)
+        </label>
+        <button type="submit">Sign Up</button>
+        <p class="error" id="register-error"></p>
+      </form>
+    </div>
+  </section>
+
+  <!-- Main app (shown after login) -->
+  <section id="app-section" class="hidden">
+    <nav id="main-nav">
+      <button class="nav-btn active" data-tab="shop-tab">Shop</button>
+      <button class="nav-btn" data-tab="cart-tab">Cart (<span id="cart-count">0</span>)</button>
+      <button class="nav-btn" data-tab="orders-tab">My Orders</button>
+      <button class="nav-btn hidden" id="admin-nav-btn" data-tab="admin-tab">Admin</button>
+    </nav>
+
+    <!-- Shop tab -->
+    <div id="shop-tab" class="tab-content">
+      <div id="product-grid"></div>
+    </div>
+
+    <!-- Cart tab -->
+    <div id="cart-tab" class="tab-content hidden">
+      <div id="cart-items"></div>
+      <div id="cart-summary">
+        <p>Total: ₹<span id="cart-total">0</span></p>
+        <button id="checkout-btn">Checkout</button>
+      </div>
+    </div>
+
+    <!-- Orders tab -->
+    <div id="orders-tab" class="tab-content hidden">
+      <div id="orders-list"></div>
+    </div>
+
+    <!-- Admin tab -->
+    <div id="admin-tab" class="tab-content hidden">
+      <h3>Add Product</h3>
+      <form id="product-form">
+        <input type="text" id="product-name" placeholder="Product name" required />
+        <input type="text" id="product-description" placeholder="Description" required />
+        <input type="number" id="product-price" placeholder="Price (₹)" required min="0" step="0.01" />
+        <input type="url" id="product-image" placeholder="Image URL (optional)" />
+        <input type="number" id="product-stock" placeholder="Stock quantity" value="10" min="0" />
+        <button type="submit">Add Product</button>
+      </form>
+
+      <h3>All Orders</h3>
+      <div id="admin-orders-list"></div>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
